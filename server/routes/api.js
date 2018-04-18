@@ -5,11 +5,21 @@ const ObjectID = require('mongodb').ObjectID;
 
 //connect
 const connection = (closure) => {
-  return MongoClient.connect('mongodb://localhost:27017/ng-tues', (err, db) => {
+  return MongoClient.connect('mongodb://localhost:27017/ng-tues', (err, client) => {
+    const db = client.db('ng-tues');
+
     if (err) return console.log(err);
 
     closure(db);
-  });
+  })
+
+
+  //below is OG
+  // return MongoClient.connect('mongodb://localhost:27017/ng-tues', (err, db) => {
+  //   if (err) return console.log(err);
+  //
+  //   closure(db);
+  // });
 };
 
 //error handling
